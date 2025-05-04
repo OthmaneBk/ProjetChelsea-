@@ -27,4 +27,4 @@ jobs:
       run: pipenv install --dev
 
     - name: Run script
-      run: pipenv run python main.py
+      run: uvicorn main:app --host 0.0.0.0 --port 8000
