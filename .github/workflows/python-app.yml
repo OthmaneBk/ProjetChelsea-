@@ -28,7 +28,7 @@ jobs:
 
 
     - name: List installed packages
-    run: pipenv run pip list
+      run: pipenv run pip list
 
 
     - name: Run the application
