@@ -9,6 +9,7 @@ fastapi = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 python-multipart = "*"  # Pour les uploads de fichiers
 fsspec = "*"
+exceptiongroup = "*"
 
 # Data processing
 pandas = "*"
@@ -22,6 +23,7 @@ seaborn = "*"
 # Utilitaires
 python-dotenv = "*"  # Gestion des variables d'environnement
 requests = "*"  # Pour faire des requêtes HTTP
+
 
 
 [requires]
