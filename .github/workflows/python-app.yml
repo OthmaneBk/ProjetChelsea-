@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -26,5 +25,5 @@ jobs:
     - name: Install dependencies
       run: pipenv install --dev
 
-    - name: Run script
-      run: pipenv run uvicorn main:app --host 0.0.0.0 --port 8000
+    - name: Run tests
+      run: pipenv run pytest
