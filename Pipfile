@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+# Core API
+fastapi = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+python-multipart = "*"  # Pour les uploads de fichiers
+fsspec = "*"
+
+# Data processing
+pandas = "*"
+numpy = "*"
+
+# Visualisation
+matplotlib = "*"
+seaborn = "*"
+
+
+# Utilitaires
+python-dotenv = "*"  # Gestion des variables d'environnement
+requests = "*"  # Pour faire des requêtes HTTP
+
+
+[requires]
+python_version = "3.9"  # 3.13 n'est pas encore stable, je recommande 3.9 ou 3.10
