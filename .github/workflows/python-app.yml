@@ -27,6 +27,32 @@ jobs:
     - name: List installed packages
       run: pip list
 
+     - name: Debug - Show current directory
+      run: |
+        echo "Current directory:"
+        pwd
+        echo "Contents of current directory:"
+        ls -la
+        echo "Full path:"
+        echo $PWD
+
+    - name: Debug - Show directory structure
+      run: |
+        echo "Directory structure:"
+        find . -type f -name "*.py" | head -20
+        echo "Looking for CSV files:"
+        find . -name "*.csv"
+        
+    - name: Debug - Check if data directory exists
+      run: |
+        echo "Checking data directory:"
+        if [ -d "data" ]; then
+          echo "data directory exists"
+          ls -la data/
+        else
+          echo "data directory not found"
+        fi
+
     - name: Run the application
       run: uvicorn main:app --host 0.0.0.0 --port 8000 &
 
