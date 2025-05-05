@@ -4,12 +4,13 @@ from fastapi.middleware.cors import CORSMiddleware
 import matplotlib.pyplot as plt
 import io
 import uvicorn
-from workflowData.pretretement import pretretement
-from workflowData.func1 import func1
-from workflowData.func2 import func2
-from workflowData.func3 import func3
+from workflowData.Data1.pretretement import pretretement
+from workflowData.Data1.func1 import func1
+from workflowData.Data1.func2 import func2
+from workflowData.Data1.func3 import func3
 
 app = FastAPI(title="GPS Data Visualization API")
+
 
 # Configuration CORS
 app.add_middleware(
