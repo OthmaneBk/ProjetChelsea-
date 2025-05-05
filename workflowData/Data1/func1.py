@@ -1,4 +1,4 @@
-from workflowData.collecte import collecte_data 
+from workflowData.Data1.collecte import collecte_data 
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
