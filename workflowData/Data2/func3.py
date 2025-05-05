@@ -8,10 +8,11 @@ data_bio_player = collecte_data()
 
 
 def func33():
-    plt.figure(figsize=(10, 6))
+    fig=plt.figure(figsize=(10, 6))
     sns.histplot(data_bio_player['age'].dropna(), bins=10)
     plt.title('Distribution des âges des joueurs')
     plt.xlabel('Âge')
     plt.ylabel('Nombre de joueurs')
     plt.tight_layout()
     plt.show()
+    return fig
