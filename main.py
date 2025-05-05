@@ -9,6 +9,10 @@ from workflowData.Data1.func1 import func1
 from workflowData.Data1.func2 import func2
 from workflowData.Data1.func3 import func3
 
+from workflowData.Data2.func1 import func11
+from workflowData.Data2.func2 import func22
+from workflowData.Data2.func3 import func33
+
 app = FastAPI(title="GPS Data Visualization API")
 
 
@@ -28,7 +32,7 @@ async def startup_event():
     print("Prétraitement terminé !")
 
 
-@app.get("/visualization/func1")
+@app.get("/gps/func1")
 def get_func1_plot():
     """Endpoint pour la visualisation func1"""
     fig = func1()
@@ -41,7 +45,7 @@ def get_func1_plot():
     
     return Response(content=buf.getvalue(), media_type="image/png")
 
-@app.get("/visualization/func2")
+@app.get("/gps/func2")
 def get_func2_plot():
     """Endpoint pour la visualisation func2"""
     fig = func2()
@@ -54,7 +58,7 @@ def get_func2_plot():
     
     return Response(content=buf.getvalue(), media_type="image/png")
 
-@app.get("/visualization/func3")
+@app.get("/gps/func3")
 def get_func3_plot():
     """Endpoint pour la visualisation func3"""
     fig = func3()
@@ -65,6 +69,47 @@ def get_func3_plot():
     buf.seek(0)
     
     return Response(content=buf.getvalue(), media_type="image/png")
+
+
+@app.get("/BioPlayer/func1")
+def get_func3_plot():
+    """Endpoint pour la visualisation func11"""
+    fig = func11()
+    
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    buf.seek(0)
+    
+    return Response(content=buf.getvalue(), media_type="image/png")
+
+
+@app.get("/BioPlayer/func2")
+def get_func3_plot():
+    """Endpoint pour la visualisation func22"""
+    fig = func22()
+    
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    buf.seek(0)
+    
+    return Response(content=buf.getvalue(), media_type="image/png")
+
+
+
+@app.get("/BioPlayer/func3")
+def get_func3_plot():
+    """Endpoint pour la visualisation func33"""
+    fig = func33()
+    
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    buf.seek(0)
+    
+    return Response(content=buf.getvalue(), media_type="image/png")
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
