@@ -15,7 +15,6 @@ from workflowData.Data2.func3 import func33
 
 
 from workflowData.Data3.func1 import func111
-from workflowData.Data3.func2 import func222
 from workflowData.Data3.func3 import func333
 from workflowData.Data3.func4 import func444
 
@@ -130,21 +129,10 @@ def get_func3_plot():
     return Response(content=buf.getvalue(), media_type="image/png")
 
 
+
 @app.get("/IndPriority/func2")
 def get_func3_plot():
     """Endpoint pour la visualisation func222"""
-    fig = func222()
-    
-    buf = io.BytesIO()
-    fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
-    plt.close(fig)
-    buf.seek(0)
-    
-    return Response(content=buf.getvalue(), media_type="image/png")
-
-@app.get("/IndPriority/func3")
-def get_func3_plot():
-    """Endpoint pour la visualisation func333"""
     fig = func333()
     
     buf = io.BytesIO()
@@ -155,11 +143,33 @@ def get_func3_plot():
     return Response(content=buf.getvalue(), media_type="image/png")
 
 
-@app.get("/IndPriority/func4")
+@app.get("/IndPriority/func3")
 def get_func3_plot():
     """Endpoint pour la visualisation func444"""
-    fig = func444()
+    df = func444()
     
+    # Convertir le DataFrame en figure matplotlib
+    fig, ax = plt.subplots(figsize=(13, 3))
+    ax.axis('off')  # Cacher les axes
+    
+    # Créer un tableau
+    table = ax.table(
+        cellText=df.values,
+        rowLabels=df.index,
+        colLabels=df.columns,
+        cellLoc='center',
+        loc='center'
+    )
+    
+    # Ajuster la taille des cellules
+    table.auto_set_font_size(False)
+    table.set_fontsize(12)
+    table.scale(1.2, 1.5)
+    
+    plt.title('Tracking vs Target')
+    plt.tight_layout()
+    
+    # Sauvegarder en image
     buf = io.BytesIO()
     fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
     plt.close(fig)

@@ -8,14 +8,16 @@ data_Individual_Priority = collecte_data()
 
 
 def func111():
+    fig, ax = plt.subplots(figsize=(12, 6))
+    
     priority_counts = data_Individual_Priority.groupby(['Priority', 'Category']).size().unstack().fillna(0)
-
-    fig=plt.figure(figsize=(12, 6))
-    priority_counts.plot(kind='bar', stacked=True)
-    plt.title('Répartition des priorités par catégorie')
-    plt.xlabel('Priorité')
-    plt.ylabel('Nombre')
+    priority_counts.plot(kind='bar', stacked=True, ax=ax)
+    
+    ax.set_title('Répartition des priorités par catégorie')
+    ax.set_xlabel('Priorité')
+    ax.set_ylabel('Nombre')
     plt.xticks(rotation=45)
-    plt.legend(title='Catégorie')
+    ax.legend(title='Catégorie')
     plt.tight_layout()
+    
     return fig
