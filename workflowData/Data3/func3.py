@@ -6,7 +6,7 @@ import seaborn as sns
 
 data_Individual_Priority = collecte_data()
 
-def fun333():
+def func333():
     performance_counts = data_Individual_Priority['Performance Type'].value_counts()
     performance_counts
 
