@@ -1,4 +1,4 @@
-import modin.pandas as pd
+import pandas as pd
 
 def collecte_data():
    data_path = 'data/BioPlayer.csv'
