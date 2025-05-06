@@ -13,6 +13,12 @@ from workflowData.Data2.func1 import func11
 from workflowData.Data2.func2 import func22
 from workflowData.Data2.func3 import func33
 
+
+from workflowData.Data3.func1 import func111
+from workflowData.Data3.func2 import func222
+from workflowData.Data3.func3 import func333
+from workflowData.Data3.func4 import func444
+
 app = FastAPI(title="GPS Data Visualization API")
 
 
@@ -102,6 +108,57 @@ def get_func3_plot():
 def get_func3_plot():
     """Endpoint pour la visualisation func33"""
     fig = func33()
+    
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    buf.seek(0)
+    
+    return Response(content=buf.getvalue(), media_type="image/png")
+
+
+@app.get("/IndPriority/func1")
+def get_func3_plot():
+    """Endpoint pour la visualisation func111"""
+    fig = func111()
+    
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    buf.seek(0)
+    
+    return Response(content=buf.getvalue(), media_type="image/png")
+
+
+@app.get("/IndPriority/func2")
+def get_func3_plot():
+    """Endpoint pour la visualisation func222"""
+    fig = func222()
+    
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    buf.seek(0)
+    
+    return Response(content=buf.getvalue(), media_type="image/png")
+
+@app.get("/IndPriority/func3")
+def get_func3_plot():
+    """Endpoint pour la visualisation func333"""
+    fig = func333()
+    
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    buf.seek(0)
+    
+    return Response(content=buf.getvalue(), media_type="image/png")
+
+
+@app.get("/IndPriority/func4")
+def get_func3_plot():
+    """Endpoint pour la visualisation func444"""
+    fig = func444()
     
     buf = io.BytesIO()
     fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
