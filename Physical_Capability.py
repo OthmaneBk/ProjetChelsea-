@@ -10,12 +10,8 @@ import seaborn as sns
 
 
 # In[2]:
+
 df = pd.read_csv("Physical_Capability_Data.csv",sep="\t")
-
-def ImpoData():
-    # 1. Importation des données
-    print(df.columns)
-
 
 # In[ ]:
 
