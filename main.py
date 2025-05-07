@@ -20,6 +20,7 @@ from workflowData.Data3.func4 import func444
 
 
 from Physical_Capability import funcPreIlyas,funcIlyas,funcIlyas1
+from recovery_status import funcIlyass1,funcIlyass2,funcIlyass3
 
 app = FastAPI(title="GPS Data Visualization API")
 
@@ -33,10 +34,11 @@ app.add_middleware(
 )
 
 
+@app.on_event("startup")
 async def startup_event():
     """Exécute le prétraitement automatiquement au lancement de l'API"""
     print("Exécution du prétraitement des données...")
-    pretretement()  # Assurez-vous que pretretement accepte data_gps en paramètre
+    pretretement()
     funcPreIlyas()
     print("Prétraitement terminé !")
 
@@ -199,6 +201,43 @@ def get_func3_plot():
 def get_func3_plot():
     """Endpoint pour la visualisation funcIlyas"""
     fig = funcIlyas()
+    
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    buf.seek(0)
+    
+    return Response(content=buf.getvalue(), media_type="image/png")
+
+@app.get("/RecSta/func1")
+def get_func3_plot():
+    """Endpoint pour la visualisation funcIlyass1"""
+    fig = funcIlyass1()
+    
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    buf.seek(0)
+    
+    return Response(content=buf.getvalue(), media_type="image/png")
+
+@app.get("/RecSta/func2")
+def get_func3_plot():
+    """Endpoint pour la visualisation funcIlyass2"""
+    fig = funcIlyass2()
+    
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    buf.seek(0)
+    
+    return Response(content=buf.getvalue(), media_type="image/png")
+
+
+@app.get("/RecSta/func3")
+def get_func3_plot():
+    """Endpoint pour la visualisation funcIlyass2"""
+    fig = funcIlyass3()
     
     buf = io.BytesIO()
     fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
