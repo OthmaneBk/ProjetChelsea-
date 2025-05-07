@@ -18,6 +18,9 @@ from workflowData.Data3.func1 import func111
 from workflowData.Data3.func3 import func333
 from workflowData.Data3.func4 import func444
 
+
+from Physical_Capability import funcPreIlyas,funcIlyas,funcIlyas1
+
 app = FastAPI(title="GPS Data Visualization API")
 
 
@@ -34,6 +37,7 @@ async def startup_event():
     """Exécute le prétraitement automatiquement au lancement de l'API"""
     print("Exécution du prétraitement des données...")
     pretretement()  # Assurez-vous que pretretement accepte data_gps en paramètre
+    funcPreIlyas()
     print("Prétraitement terminé !")
 
 
@@ -177,6 +181,31 @@ def get_func3_plot():
     
     return Response(content=buf.getvalue(), media_type="image/png")
 
+
+@app.get("/PhsCap/func1")
+def get_func3_plot():
+    """Endpoint pour la visualisation funcIlyas"""
+    fig = funcIlyas1()
+    
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    buf.seek(0)
+    
+    return Response(content=buf.getvalue(), media_type="image/png")
+
+
+@app.get("/PhsCap/func2")
+def get_func3_plot():
+    """Endpoint pour la visualisation funcIlyas"""
+    fig = funcIlyas()
+    
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png', dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    buf.seek(0)
+    
+    return Response(content=buf.getvalue(), media_type="image/png")
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
