@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, Request
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 import matplotlib.pyplot as plt
@@ -21,6 +21,9 @@ from workflowData.Data3.func4 import func444
 
 from Physical_Capability import funcPreIlyas,funcIlyas,funcIlyas1
 from recovery_status import funcIlyass1,funcIlyass2,funcIlyass3
+
+
+from chat_model.model import get_ai_response
 
 app = FastAPI(title="GPS Data Visualization API")
 
@@ -246,5 +249,15 @@ def get_func3_plot():
     
     return Response(content=buf.getvalue(), media_type="image/png")
 
+
+@app.post("/model/chat")
+async def model_chat(request: Request):  # paramètre de type query string
+    body = await request.json()  # body brut
+    query = body.get("query")
+    response = get_ai_response(query)
+    return {"response": response}
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
+    
